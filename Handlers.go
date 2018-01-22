@@ -8,23 +8,35 @@ import (
    "github.com/gorilla/mux"
 )
 
+type Message struct {
+   Message string `json:"message"`
+}
+
 func Hacker(w http.ResponseWriter, r *http.Request) {
    vars := mux.Vars(r)
    hackerId := vars["id"]
-   fmt.Fprintln(w, "Looking for hacker with id:", hackerId)
+   mess := Message{"Searching for infor about hacker with id: " + string(hackerId)}
+   w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+   w.WriteHeader(http.StatusOK)
+   if err := json.NewEncoder(w).Encode(mess); err != nil {
+      panic(err)
+   }
 }
 
 func Hackers(w http.ResponseWriter, r *http.Request) {
-   fmt.Fprintln(w, "Looking for all hackers")
+   w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+   w.WriteHeader(http.StatusOK)
+   mess := Message{"This will be an array of hackers"}
+   if err := json.NewEncoder(w).Encode(mess); err != nil {
+      panic(err)
+   }
 }
 
 func Schedule(w http.ResponseWriter, r *http.Request) {
    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
    w.WriteHeader(http.StatusOK)
-   mess := `{"message":"This is where event items will show up"}`
-   encode,_ := json.Marshal(mess)
-
-   if err := json.NewEncoder(w).Encode(encode); err != nil {
+   mess := Message{"This will be the schedule"}
+   if err := json.NewEncoder(w).Encode(mess); err != nil {
       panic(err)
    }
 
