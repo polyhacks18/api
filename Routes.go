@@ -46,4 +46,16 @@ var routes = Routes{
       "/hacker/{id}",
       Hacker,
    },
+   Route{
+      "Schedule",
+      "GET",
+      "/schedule",
+      Schedule,
+   },
+   Route{
+      "Signin",
+      "POST",
+      "/signin",
+      Signin,
+   },
 }
