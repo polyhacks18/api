@@ -15,10 +15,22 @@ type Message struct {
 func Hacker(w http.ResponseWriter, r *http.Request) {
    vars := mux.Vars(r)
    hackerId := vars["id"]
-   mess := Message{"Searching for infor about hacker with id: " + string(hackerId)}
+   //mess := Message{"Searching for infor about hacker with id: " + string(hackerId)}
+   var mess *Person
+   for _, p := range Database{
+      if hackerId == string(p.ID){
+         mess = &p
+         break
+      }
+   }
    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
    w.WriteHeader(http.StatusOK)
-   if err := json.NewEncoder(w).Encode(mess); err != nil {
+   if mess == nil {
+      json.NewEncoder(w).Encode(Message{"No hacker found with that ID"})
+      return
+   }
+   fmt.Println("Found hacker:", *mess)
+   if err := json.NewEncoder(w).Encode(*mess); err != nil {
       panic(err)
    }
 }
