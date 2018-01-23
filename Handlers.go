@@ -38,8 +38,7 @@ func Hacker(w http.ResponseWriter, r *http.Request) {
 func Hackers(w http.ResponseWriter, r *http.Request) {
    w.Header().Set("Content-Type", "application/json; charset=UTF-8")
    w.WriteHeader(http.StatusOK)
-   mess := Message{"This will be an array of hackers"}
-   if err := json.NewEncoder(w).Encode(mess); err != nil {
+   if err := json.NewEncoder(w).Encode(Database); err != nil {
       panic(err)
    }
 }
