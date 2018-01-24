@@ -1,9 +1,9 @@
 package main
 
 type Person struct {
-   FirstName string                `json:"firstName,omitempty"`
-   LastName string                `json:"lastName,omitempty"`
-   ID []byte                   `json:"id,omitempty"`
+   FirstName string            `json:"firstName"`
+   LastName string             `json:"lastName"`
+   id []byte
    Position int                `json:"pos,omitempty"`
    PointLog []PointTransaction `json:"pointLog,omitempty"`
 }
