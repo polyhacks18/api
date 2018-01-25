@@ -38,4 +38,11 @@ var Database People = People{
       3,
       make([]PointTransaction, 0),
    },
+   Person{
+      "Jessie",
+      "Pullaro",
+      []byte("451C3D487AEDA41E70A44977D69571DF991E3BC2EC1E4A0C8B25C427C85C57F0"),
+      4,
+      make([]PointTransaction, 0),
+   },
 }
